@@ -1,10 +1,34 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
+import { composeWithDevtools } from 'redux-devtools-extension';
 import App from './App';
+import loginReducer from './reducers/login.reducer';
+import signupReducer from './reducers/signup.reducer';
+import favouritesReducer from './reducers/favourites.reducer';
+import bicyclesReducer from './reducers/bicycles.reducer';
+
+const rootReducer = combineReducers({
+  login: loginReducer,
+  signup: signupReducer,
+  bicycles: bicyclesReducer,
+  favourites: favouritesReducer,
+});
+
+const store = createStore(
+  rootReducer,
+  composeWithDevtools(applyMiddleware(thunk)),
+);
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <BrowserRouter>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </BrowserRouter>,
+
   document.getElementById('root'),
 );
