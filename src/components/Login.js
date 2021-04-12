@@ -1,9 +1,12 @@
 import axios from 'axios';
 import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  // const [logged, setLogged] = useState(false);
+  const history = useHistory();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,12 +19,15 @@ const Login = () => {
         'http://localhost:3000/auth/login',
         userLogin,
       );
+      // setLogged(true);
       console.log(response.data);
+      history.push('/favourites');
       localStorage.setItem('JWT', response.data.auth_token);
     } catch (error) {
       console.log('User is not registered');
     }
   };
+
   return (
     <div>
       <h1>Login</h1>
