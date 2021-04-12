@@ -16,7 +16,8 @@ const Login = () => {
         'http://localhost:3000/auth/login',
         userLogin,
       );
-      console.log(response);
+      console.log(response.data);
+      localStorage.setItem('JWT', response.data.auth_token);
     } catch (error) {
       console.log('User is not registered');
     }
