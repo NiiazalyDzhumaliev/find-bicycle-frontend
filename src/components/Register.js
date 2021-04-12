@@ -1,29 +1,26 @@
 import { useState } from 'react';
-import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import signupAction from '../action/signup.action';
 
 const Register = () => {
   const [name, setName] = useState(null);
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [passwordCheck, setPasswordCheck] = useState(null);
+  const dispatch = useDispatch();
+  const token = useSelector((state) => state.signup);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const newUser = {
-        name,
-        email,
-        password,
-        passwordCheck,
-      };
-      const response = await axios.post(
-        'http://localhost:3000/signup',
-        newUser,
-      );
-      console.log(response);
-    } catch (error) {
-      console.log('Something is wrong');
-    }
+    const newUser = {
+      name,
+      email,
+      password,
+      passwordCheck,
+    };
+
+    dispatch(signupAction(newUser));
+    localStorage.setItem('JWT', token);
   };
   return (
     <div>

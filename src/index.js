@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-import { composeWithDevtools } from 'redux-devtools-extension';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import App from './App';
 import loginReducer from './reducers/login.reducer';
 import signupReducer from './reducers/signup.reducer';
@@ -20,7 +20,7 @@ const rootReducer = combineReducers({
 
 const store = createStore(
   rootReducer,
-  composeWithDevtools(applyMiddleware(thunk)),
+  composeWithDevTools(applyMiddleware(thunk)),
 );
 
 ReactDOM.render(
