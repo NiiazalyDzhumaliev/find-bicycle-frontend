@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import loginAction from '../action/login.action';
 
@@ -8,7 +7,6 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
   const token = useSelector((state) => state.login.token);
-  const history = useHistory();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -17,10 +15,8 @@ const Login = () => {
       password,
     };
     dispatch(loginAction(userLogin));
-
-    localStorage.setItem('JWT', token);
-    history.push('/favourites');
   };
+  localStorage.setItem('JWT', token);
 
   return (
     <div>
