@@ -1,31 +1,22 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import favouriteBicyclesAction from '../action/favourite.action';
 
 const Favourite = () => {
-  // const [favourite, setFavourite] = useState(null);
-  const [error, setError] = useState(null);
+  const dispatch = useDispatch();
+  const bicycles = useSelector((state) => state.favourites.data);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const result = await axios('http://localhost:3000/favourites', {
-          headers: {
-            Authorization: localStorage.getItem('JWT'),
-          },
-        });
-        // setFavourite(result);
-        console.log(result);
-      } catch (error) {
-        setError(true);
-        console.log('Unauthorized request');
-      }
-    };
-    fetchData();
+    dispatch(favouriteBicyclesAction());
   }, []);
   return (
-    <div>
-      <h1>{error ? 'Please login' : 'Your favourites'}</h1>
-    </div>
+    <ul>
+      {bicycles.map((bicycle) => (
+        <button key={bicycle.id} type="button">
+          {bicycle.model}
+        </button>
+      ))}
+    </ul>
   );
 };
 
