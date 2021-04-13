@@ -17,8 +17,8 @@ const Login = () => {
       password,
     };
     dispatch(loginAction(userLogin));
-    localStorage.setItem('JWT', token);
 
+    localStorage.setItem('JWT', token);
     history.push('/favourites');
   };
 
