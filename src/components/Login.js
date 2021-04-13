@@ -10,7 +10,7 @@ const Login = () => {
   const token = useSelector((state) => state.login.token);
   const history = useHistory();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const userLogin = {
       email,
@@ -18,6 +18,7 @@ const Login = () => {
     };
     dispatch(loginAction(userLogin));
     localStorage.setItem('JWT', token);
+
     history.push('/favourites');
   };
 

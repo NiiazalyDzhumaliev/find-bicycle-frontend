@@ -10,7 +10,7 @@ const Register = () => {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.signup.token);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const newUser = {
       name,
