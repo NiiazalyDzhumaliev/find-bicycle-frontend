@@ -19,8 +19,8 @@ const Register = () => {
     };
 
     dispatch(signupAction(newUser));
-    localStorage.setItem('JWT', token);
   };
+  localStorage.setItem('JWT', token);
   return (
     <div>
       <h1>Register</h1>
