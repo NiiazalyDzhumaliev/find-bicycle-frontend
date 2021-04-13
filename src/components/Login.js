@@ -1,31 +1,24 @@
-import axios from 'axios';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import loginAction from '../action/login.action';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  // const [logged, setLogged] = useState(false);
+  const dispatch = useDispatch();
+  const token = useSelector((state) => state.login.token);
   const history = useHistory();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const userLogin = {
-        email,
-        password,
-      };
-      const response = await axios.post(
-        'http://localhost:3000/auth/login',
-        userLogin,
-      );
-      // setLogged(true);
-      console.log(response.data);
-      history.push('/favourites');
-      localStorage.setItem('JWT', response.data.auth_token);
-    } catch (error) {
-      console.log('User is not registered');
-    }
+    const userLogin = {
+      email,
+      password,
+    };
+    dispatch(loginAction(userLogin));
+    localStorage.setItem('JWT', token);
+    history.push('/favourites');
   };
 
   return (

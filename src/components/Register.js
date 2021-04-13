@@ -8,7 +8,7 @@ const Register = () => {
   const [password, setPassword] = useState(null);
   // const [passwordCheck, setPasswordCheck] = useState(null);
   const dispatch = useDispatch();
-  const token = useSelector((state) => state.signup);
+  const token = useSelector((state) => state.signup.token);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
