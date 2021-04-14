@@ -9,7 +9,6 @@ const loginAction = (newUser) => async (dispatch) => {
       'http://localhost:3000/auth/login',
       newUser,
     );
-    console.log(response);
     dispatch({
       type: 'USER_LOGIN_SUCCESS',
       payload: response.data.auth_token,

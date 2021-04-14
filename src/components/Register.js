@@ -6,7 +6,6 @@ const Register = () => {
   const [name, setName] = useState(null);
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
-  // const [passwordCheck, setPasswordCheck] = useState(null);
   const dispatch = useDispatch();
   const token = useSelector((state) => state.signup.token);
 
@@ -41,14 +40,6 @@ const Register = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </label>
-        {/* <label htmlFor="password-confirmation">
-          Password Confirm
-          <input
-            type="password"
-            id="password-confirmation"
-            onChange={(e) => setPasswordCheck(e.target.value)}
-          />
-        </label> */}
         <label htmlFor="display-name">
           Display name
           <input

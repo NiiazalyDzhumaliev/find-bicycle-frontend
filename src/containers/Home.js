@@ -21,7 +21,7 @@ const Home = () => {
         },
       );
     } catch (error) {
-      console.log('something is wrong');
+      console.log(error);
     }
   };
 
