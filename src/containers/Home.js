@@ -8,21 +8,17 @@ const Home = () => {
   const bicycles = useSelector((state) => state.bicycles.data);
 
   const handleClick = (id) => {
-    try {
-      axios.post(
-        'http://localhost:3000/favourites',
-        {
-          bicycle_id: id,
+    axios.post(
+      'http://localhost:3000/favourites',
+      {
+        bicycle_id: id,
+      },
+      {
+        headers: {
+          Authorization: localStorage.getItem('JWT'),
         },
-        {
-          headers: {
-            Authorization: localStorage.getItem('JWT'),
-          },
-        },
-      );
-    } catch (error) {
-      console.log(error);
-    }
+      },
+    );
   };
 
   useEffect(() => {
