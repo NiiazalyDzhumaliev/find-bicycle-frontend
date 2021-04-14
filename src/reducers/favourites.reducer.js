@@ -24,6 +24,15 @@ const favouriteBicyclesReducer = (state = defaultState, action) => {
         data: action.payload,
         error: '',
       };
+    case 'REMOVE_FAVOURITE': {
+      const updatedArray = state.data.filter(
+        (bicycle) => bicycle.id !== action.payload,
+      );
+      return {
+        ...state,
+        data: updatedArray,
+      };
+    }
     default:
       return state;
   }

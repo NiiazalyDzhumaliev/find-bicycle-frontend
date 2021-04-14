@@ -1,7 +1,10 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
-import favouriteBicyclesAction from '../action/favourite.action';
+import {
+  favouriteBicyclesAction,
+  REMOVE_FAVOURITE,
+} from '../action/favourite.action';
 
 const Favourite = () => {
   const dispatch = useDispatch();
@@ -14,6 +17,7 @@ const Favourite = () => {
       data: { bicycle_id: id },
       headers: { Authorization: localStorage.getItem('JWT') },
     });
+    dispatch(REMOVE_FAVOURITE(id));
   };
 
   useEffect(() => {

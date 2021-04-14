@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const favouriteBicyclesAction = () => async (dispatch) => {
+export const favouriteBicyclesAction = () => async (dispatch) => {
   try {
     dispatch({
       type: 'FAVOURITE_BICYCLES_LOADING',
@@ -21,4 +21,7 @@ const favouriteBicyclesAction = () => async (dispatch) => {
   }
 };
 
-export default favouriteBicyclesAction;
+export const REMOVE_FAVOURITE = (id) => ({
+  type: 'REMOVE_FAVOURITE',
+  payload: id,
+});
