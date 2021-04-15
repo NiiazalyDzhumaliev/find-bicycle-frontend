@@ -25,6 +25,13 @@ const loginReducer = (state = defaultState, action) => {
         error: '',
         token: action.payload,
       };
+    case 'LOGOUT':
+      return {
+        ...state,
+        process: false,
+        error: '',
+        token: '',
+      };
     default:
       return state;
   }

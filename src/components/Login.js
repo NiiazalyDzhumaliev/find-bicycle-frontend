@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import loginAction from '../action/login.action';
+import { loginAction } from '../action/login.action';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -17,8 +17,8 @@ const Login = () => {
       password,
     };
     dispatch(loginAction(userLogin));
-    localStorage.setItem('JWT', state.token);
   };
+  localStorage.setItem('JWT', state.token);
 
   const loggedIn = (token) => {
     if (token && token !== '') {

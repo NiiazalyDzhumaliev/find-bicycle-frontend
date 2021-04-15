@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const loginAction = (newUser) => async (dispatch) => {
+export const loginAction = (newUser) => async (dispatch) => {
   try {
     dispatch({
       type: 'USER_LOGIN_PROCESS',
@@ -20,4 +20,6 @@ const loginAction = (newUser) => async (dispatch) => {
   }
 };
 
-export default loginAction;
+export const LOGOUT = () => ({
+  type: 'LOGOUT',
+});
