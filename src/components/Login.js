@@ -10,6 +10,10 @@ const Login = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.login);
 
+  if (state.token !== '') {
+    return <Redirect to="/bicycles" />;
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const userLogin = {
@@ -18,14 +22,6 @@ const Login = () => {
     };
     dispatch(loginAction(userLogin));
   };
-  localStorage.setItem('JWT', state.token);
-
-  const loggedIn = (token) => {
-    if (token && token !== '') {
-      return <Redirect to="/bicycles" />;
-    }
-    return <p>Something is wrong</p>;
-  };
 
   return (
     <div>
@@ -33,7 +29,6 @@ const Login = () => {
       <div>
         <p>Dont have an account?</p>
         <Link to="/signup">Sign up</Link>
-        {loggedIn(localStorage.getItem('JWT'))}
       </div>
       <form onSubmit={(e) => handleSubmit(e)}>
         <label htmlFor="email">
