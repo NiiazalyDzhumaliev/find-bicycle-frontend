@@ -1,7 +1,5 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import _ from 'lodash';
 import signupAction from '../action/signup.action';
 
 const Register = () => {
@@ -10,7 +8,6 @@ const Register = () => {
   const [password, setPassword] = useState(null);
   const dispatch = useDispatch();
   const token = useSelector((state) => state.signup.token);
-  const history = useHistory();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,12 +19,8 @@ const Register = () => {
 
     dispatch(signupAction(newUser));
   };
-
-  const emptyToken = _.isEmpty(token);
   localStorage.setItem('JWT', token);
-  if (!emptyToken) {
-    history.push('/');
-  }
+
   return (
     <div>
       <h1>Register</h1>

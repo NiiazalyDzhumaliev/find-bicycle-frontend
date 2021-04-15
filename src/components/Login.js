@@ -1,7 +1,5 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import { useHistory } from 'react-router-dom';
-// import _ from 'lodash';
 import loginAction from '../action/login.action';
 
 const Login = () => {
@@ -9,7 +7,6 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
   const token = useSelector((state) => state.login.token);
-  // const history = useHistory();
 
   const handleSubmit = (e) => {
     e.preventDefault();
