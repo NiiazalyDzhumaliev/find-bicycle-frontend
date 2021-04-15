@@ -1,11 +1,12 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import {
   favouriteBicyclesAction,
   REMOVE_FAVOURITE,
 } from '../action/favourite.action';
+import Logout from '../components/Logout';
 
 const Favourite = () => {
   const dispatch = useDispatch();
@@ -21,12 +22,20 @@ const Favourite = () => {
     dispatch(REMOVE_FAVOURITE(id));
   };
 
+  const loggedIn = (token) => {
+    if (token && token !== '') {
+      return <Logout />;
+    }
+    return <Redirect to="/" />;
+  };
+
   useEffect(() => {
     dispatch(favouriteBicyclesAction());
   }, []);
   return (
     <ul>
       <Link to="/bicycles">All Bicycles</Link>
+      {loggedIn(localStorage.getItem('JWT'))}
       {bicycles.map((bicycle) => (
         <button
           key={bicycle.id}
