@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import _ from 'lodash';
+
 import loginAction from '../action/login.action';
 
 const Login = () => {
@@ -17,9 +17,15 @@ const Login = () => {
       password,
     };
     dispatch(loginAction(userLogin));
+    localStorage.setItem('JWT', state.token);
   };
 
-  localStorage.setItem('JWT', state.token);
+  const loggedIn = (token) => {
+    if (token && token !== '') {
+      return <Redirect to="/bicycles" />;
+    }
+    return <p>Something is wrong</p>;
+  };
 
   return (
     <div>
@@ -27,11 +33,7 @@ const Login = () => {
       <div>
         <p>Dont have an account?</p>
         <Link to="/signup">Sign up</Link>
-        {!_.isEmpty(state.token) ? (
-          <Redirect to="/bicycles" />
-        ) : (
-          <p>Password or login invalid</p>
-        )}
+        {loggedIn(localStorage.getItem('JWT'))}
       </div>
       <form onSubmit={(e) => handleSubmit(e)}>
         <label htmlFor="email">
