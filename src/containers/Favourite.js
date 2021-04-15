@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import {
   favouriteBicyclesAction,
   REMOVE_FAVOURITE,
@@ -25,6 +26,7 @@ const Favourite = () => {
   }, []);
   return (
     <ul>
+      <Link to="/bicycles">All Bicycles</Link>
       {bicycles.map((bicycle) => (
         <button
           key={bicycle.id}

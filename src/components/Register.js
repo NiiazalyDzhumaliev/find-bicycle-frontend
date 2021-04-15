@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import signupAction from '../action/signup.action';
 
@@ -23,7 +24,11 @@ const Register = () => {
 
   return (
     <div>
-      <h1>Register</h1>
+      <h1>Sign up page</h1>
+      <div>
+        <p>Already have an account?</p>
+        <Link to="/login">Login</Link>
+      </div>
       <form onSubmit={handleSubmit}>
         <label htmlFor="email">
           Email:

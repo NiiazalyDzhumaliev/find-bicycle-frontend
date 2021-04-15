@@ -1,42 +1,11 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import axios from 'axios';
-import bicyclesAction from '../action/bicycles.action';
+import { Link } from 'react-router-dom';
 
-const Home = () => {
-  const dispatch = useDispatch();
-  const bicycles = useSelector((state) => state.bicycles.data);
+const Home = () => (
+  <div>
+    <h1>Home page</h1>
 
-  const handleClick = (id) => {
-    axios.post(
-      'http://localhost:3000/favourites',
-      {
-        bicycle_id: id,
-      },
-      {
-        headers: {
-          Authorization: localStorage.getItem('JWT'),
-        },
-      },
-    );
-  };
-
-  useEffect(() => {
-    dispatch(bicyclesAction());
-  }, []);
-  return (
-    <ul>
-      {bicycles.map((bicycle) => (
-        <button
-          key={bicycle.id}
-          type="button"
-          onClick={() => handleClick(bicycle.id)}
-        >
-          {bicycle.model}
-        </button>
-      ))}
-    </ul>
-  );
-};
-
+    <Link to="signup">Sign up</Link>
+    <Link to="login">Login</Link>
+  </div>
+);
 export default Home;

@@ -1,12 +1,14 @@
 import { useState } from 'react';
+import { Link, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import _ from 'lodash';
 import loginAction from '../action/login.action';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
-  const token = useSelector((state) => state.login.token);
+  const state = useSelector((state) => state.login);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -17,11 +19,20 @@ const Login = () => {
     dispatch(loginAction(userLogin));
   };
 
-  localStorage.setItem('JWT', token);
+  localStorage.setItem('JWT', state.token);
 
   return (
     <div>
-      <h1>Login</h1>
+      <h1>Login page</h1>
+      <div>
+        <p>Dont have an account?</p>
+        <Link to="/signup">Sign up</Link>
+        {!_.isEmpty(state.token) ? (
+          <Redirect to="/bicycles" />
+        ) : (
+          <p>Password or login invalid</p>
+        )}
+      </div>
       <form onSubmit={(e) => handleSubmit(e)}>
         <label htmlFor="email">
           Email:
