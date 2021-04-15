@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const signupAction = (newUser) => async (dispatch) => {
+export const signupAction = (newUser) => async (dispatch) => {
   try {
     dispatch({
       type: 'USER_SIGNUP_PROCESS',
@@ -12,6 +12,7 @@ const signupAction = (newUser) => async (dispatch) => {
         password: newUser.password,
       },
     });
+    localStorage.setItem('JWT', response.data.auth_token);
     dispatch({
       type: 'USER_SIGNUP_SUCCESS',
       payload: response.data.auth_token,
@@ -23,4 +24,6 @@ const signupAction = (newUser) => async (dispatch) => {
   }
 };
 
-export default signupAction;
+export const LOGOUT_AFTER_SIGNUP = () => ({
+  type: 'LOGOUT_AFTER_SIGNUP',
+});

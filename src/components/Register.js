@@ -1,14 +1,18 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import signupAction from '../action/signup.action';
+import { signupAction } from '../action/signup.action';
 
 const Register = () => {
   const [name, setName] = useState(null);
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const dispatch = useDispatch();
-  const token = useSelector((state) => state.signup.token);
+  const state = useSelector((state) => state.signup);
+
+  if (state.token !== '') {
+    return <Redirect to="/bicycles" />;
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -17,10 +21,8 @@ const Register = () => {
       email,
       password,
     };
-
     dispatch(signupAction(newUser));
   };
-  localStorage.setItem('JWT', token);
 
   return (
     <div>

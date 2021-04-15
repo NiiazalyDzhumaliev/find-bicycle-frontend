@@ -25,6 +25,13 @@ const signupReducer = (state = defaultState, action) => {
         error: '',
         token: action.payload,
       };
+    case 'LOGOUT_AFTER_SIGNUP':
+      return {
+        ...state,
+        process: false,
+        error: '',
+        token: '',
+      };
     default:
       return state;
   }
