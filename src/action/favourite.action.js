@@ -5,11 +5,14 @@ export const favouriteBicyclesAction = () => async (dispatch) => {
     dispatch({
       type: 'FAVOURITE_BICYCLES_LOADING',
     });
-    const response = await axios.get('http://localhost:3000/favourites', {
-      headers: {
-        Authorization: localStorage.getItem('JWT'),
+    const response = await axios.get(
+      'https://vast-hollows-37440.herokuapp.com/favourites',
+      {
+        headers: {
+          Authorization: localStorage.getItem('JWT'),
+        },
       },
-    });
+    );
     dispatch({
       type: 'FAVOURITE_BICYCLES_SUCCESS',
       payload: response.data,

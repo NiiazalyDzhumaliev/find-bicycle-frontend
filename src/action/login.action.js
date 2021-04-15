@@ -6,7 +6,7 @@ export const loginAction = (newUser) => async (dispatch) => {
       type: 'USER_LOGIN_PROCESS',
     });
     const response = await axios.post(
-      'http://localhost:3000/auth/login',
+      'https://vast-hollows-37440.herokuapp.com/auth/login',
       newUser,
     );
     localStorage.setItem('JWT', response.data.auth_token);

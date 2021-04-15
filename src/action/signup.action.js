@@ -5,13 +5,16 @@ export const signupAction = (newUser) => async (dispatch) => {
     dispatch({
       type: 'USER_SIGNUP_PROCESS',
     });
-    const response = await axios.post('http://localhost:3000/signup', {
-      user: {
-        name: newUser.name,
-        email: newUser.email,
-        password: newUser.password,
+    const response = await axios.post(
+      'https://vast-hollows-37440.herokuapp.com/signup',
+      {
+        user: {
+          name: newUser.name,
+          email: newUser.email,
+          password: newUser.password,
+        },
       },
-    });
+    );
     localStorage.setItem('JWT', response.data.auth_token);
     dispatch({
       type: 'USER_SIGNUP_SUCCESS',

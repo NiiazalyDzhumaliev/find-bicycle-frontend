@@ -5,11 +5,14 @@ const bicyclesAction = () => async (dispatch) => {
     dispatch({
       type: 'BICYCLES_LOADING',
     });
-    const response = await axios.get('http://localhost:3000/bicycles', {
-      headers: {
-        Authorization: localStorage.getItem('JWT'),
+    const response = await axios.get(
+      'https://vast-hollows-37440.herokuapp.com/bicycles',
+      {
+        headers: {
+          Authorization: localStorage.getItem('JWT'),
+        },
       },
-    });
+    );
     dispatch({
       type: 'BICYCLES_SUCCESS',
       payload: response.data,

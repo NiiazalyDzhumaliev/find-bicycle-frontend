@@ -11,7 +11,7 @@ const Bicycle = () => {
 
   const handleClick = (id) => {
     axios.post(
-      'http://localhost:3000/favourites',
+      'https://vast-hollows-37440.herokuapp.com/favourites',
       {
         bicycle_id: id,
       },

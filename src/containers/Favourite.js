@@ -14,7 +14,7 @@ const Favourite = () => {
 
   const handleClick = (id) => {
     axios({
-      url: 'http://localhost:3000/favourites',
+      url: 'https://vast-hollows-37440.herokuapp.com/favourites',
       method: 'delete',
       data: { bicycle_id: id },
       headers: { Authorization: localStorage.getItem('JWT') },
