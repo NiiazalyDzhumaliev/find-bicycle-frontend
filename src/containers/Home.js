@@ -4,7 +4,7 @@ import style from '../styles/Home.module.css';
 
 const Home = () => (
   <div className={style.container}>
-    <h1>Login</h1>
+    <h1 className={style.header}>Login</h1>
     <Login />
     <Link to="signup">Signup</Link>
   </div>
