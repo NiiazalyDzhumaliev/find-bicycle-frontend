@@ -1,18 +1,13 @@
 import { useState } from 'react';
-import { Redirect } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { signupAction } from '../action/signup.action';
+import style from '../styles/Register.module.css';
 
 const Register = () => {
   const [name, setName] = useState(null);
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const dispatch = useDispatch();
-  const state = useSelector((state) => state.signup);
-
-  if (state.token !== '') {
-    return <Redirect to="/bicycles" />;
-  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,25 +20,31 @@ const Register = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="email">
+    <form className={style.form_container} onSubmit={handleSubmit}>
+      <label className={style.form_label} htmlFor="email">
         Email:
+        {' '}
+        <br />
         <input
           type="email"
           id="email"
           onChange={(e) => setEmail(e.target.value)}
         />
       </label>
-      <label htmlFor="password">
-        Password
+      <label className={style.form_label} htmlFor="password">
+        Password:
+        {' '}
+        <br />
         <input
           type="password"
           id="password"
           onChange={(e) => setPassword(e.target.value)}
         />
       </label>
-      <label htmlFor="display-name">
-        Display name
+      <label className={style.form_label} htmlFor="display-name">
+        Display name:
+        {' '}
+        <br />
         <input
           type="text"
           id="display-name"
