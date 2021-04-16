@@ -5,6 +5,7 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import './index.css';
 import App from './App';
 import loginReducer from './reducers/login.reducer';
 import signupReducer from './reducers/signup.reducer';

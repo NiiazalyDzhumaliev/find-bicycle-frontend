@@ -4,9 +4,10 @@ import Login from './components/Login';
 import Favourite from './containers/Favourite';
 import Bicycle from './containers/Bicycle';
 import Home from './containers/Home';
+import style from './styles/App.module.css';
 
 const App = () => (
-  <div>
+  <div className={style.container}>
     <Switch>
       <Route exact path="/" component={Home} />
       <Route path="/bicycles" component={Bicycle} />
